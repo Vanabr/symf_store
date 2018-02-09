@@ -1,0 +1,17 @@
+App\Domain\DTO\CategoryDTO:
+    dto_category_root_{1..4}:
+        title: <ru_RU:word()>
+    dto_category_level_1_{5..8}:
+            title: <ru_RU:word()>
+    dto_category_level_2_{9..12}:
+            title: <ru_RU:word()>
+
+App\Entity\Category:
+    category_root_{1..4}:
+        __construct: ['@dto_category_root_<current()>']
+    category_level_1_{5..8}:
+        __construct: ['@dto_category_level_1_<current()>']
+        parent: '@category_root_*'
+    category_level_2_{9..12}:
+        __construct: ['@dto_category_level_2_<current()>']
+        parent: '@category_level_1_*'
